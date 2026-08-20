@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<!--
+  Dreamina Character & Mascot 3D Animation Prompt Craft
+  Creator: Alexis Galvez (CorelDRAW Tips)
+  YouTube: youtube.com/coreldrawtips
+  Copyright © 2026 Alexis Galvez. All rights reserved.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dreamina Character & Mascot 3D Animation Prompt Craft</title>
+  <meta name="description" content="Transform 2D Vector / Illustration mascot characters into continuous 3D AI video animations for Dreamina Seedance 2.5 and Seedream 5.0.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- App Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Glow -->
+  <div class="glow-container">
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="logo-icon">
+          <i class="fa-solid fa-dragon"></i>
+        </div>
+        <div>
+          <h1>Dreamina 3D Character & Mascot Animation</h1>
+          <p class="subtitle">Transform 2D Vector / Illustration Mascots into Continuous 30s AI Video &bull; Copyright &copy; 2026 <a href="https://youtube.com/coreldrawtips" target="_blank" style="color: var(--color-cyan); text-decoration: none;">Alexis Galvez (CorelDRAW Tips)</a></p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <button type="button" class="badge manual-badge" id="btn-open-manual"><i class="fa-solid fa-book-open"></i> User Manual</button>
+        <a href="https://youtube.com/coreldrawtips" target="_blank" class="badge author-badge"><i class="fa-brands fa-youtube"></i> Alexis Galvez</a>
+        <span class="badge seedance-badge"><i class="fa-solid fa-sparkles"></i> Seedance 2.5 Character Engine</span>
+        <span class="badge corel-badge"><i class="fa-solid fa-bezier-curve"></i> 2D Vector / Illustration Bridge</span>
+      </div>
+    </header>
+
+    <!-- Quick Storyboard Presets Bar -->
+    <section class="presets-bar">
+      <div class="presets-label">
+        <i class="fa-solid fa-bolt"></i> <span>Mascot Animation Presets:</span>
+      </div>
+      <div class="presets-buttons">
+        <button type="button" class="preset-btn active" data-preset="mascot-adventure">
+          <i class="fa-solid fa-person-walking"></i> Mascot Adventure Walk (30s)
+        </button>
+        <button type="button" class="preset-btn" data-preset="playful-dance">
+          <i class="fa-solid fa-music"></i> Playful Dance & Wave (15s)
+        </button>
+        <button type="button" class="preset-btn" data-preset="action-hero">
+          <i class="fa-solid fa-bolt-lightning"></i> Action Jump & Hero Pose (15s)
+        </button>
+        <button type="button" class="preset-btn" data-preset="cute-reaction">
+          <i class="fa-solid fa-face-smile-wink"></i> Cute Emotional Reaction (10s)
+        </button>
+      </div>
+    </section>
+
+    <!-- 3-Column Workspace Grid -->
+    <main class="workspace-grid">
+      
+      <!-- COLUMN 1: Character Reference & Global Setup -->
+      <section class="panel-card setup-panel">
+        <div class="panel-header">
+          <h2><i class="fa-solid fa-paw"></i> 1. Mascot & World Setup</h2>
+        </div>
+        <div class="panel-body">
+          
+          <!-- Character Reference Upload (@Image 1) -->
+          <div class="ref-slot-card">
+            <div class="ref-slot-header">
+              <span class="ref-tag">@Image 1</span>
+              <span class="ref-role-label">2D Mascot Vector Reference</span>
+            </div>
+            <div class="upload-box" id="drop-zone-1">
+              <input type="file" id="image-upload-1" accept="image/*, .svg, image/svg+xml" class="file-input">
+              <div class="upload-idle" id="upload-idle-1">
+                <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                <p class="upload-main-text">Upload 2D Vector / Illustration</p>
+                <span class="upload-sub-text">PNG (transparent) or SVG file</span>
+              </div>
+              <div class="upload-preview hidden" id="upload-preview-1">
+                <img id="image-preview-1" src="" alt="Mascot Preview">
+                <button type="button" class="btn-remove-image" id="btn-remove-1" title="Remove image">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="ref-controls">
+              <div class="slider-group">
+                <label for="weight-1">Identity Lock Weight: <span id="weight-val-1">85%</span> (Proportions & Face)</label>
+                <input type="range" id="weight-1" min="40" max="100" value="85" class="range-slider">
+              </div>
+            </div>
+          </div>
+
+          <!-- Extracted Brand Palette -->
+          <div class="form-group">
+            <label class="group-title"><i class="fa-solid fa-palette"></i> Extracted Mascot Palette</label>
+            <div class="palette-swatches" id="palette-swatches">
+              <span class="palette-empty-text">Upload mascot to extract colors</span>
+            </div>
+          </div>
+
+          <!-- 3D Render Style -->
+          <div class="form-group">
+            <label for="character-style"><i class="fa-solid fa-wand-magic-sparkles"></i> 3D Character Aesthetic Style</label>
+            <select id="character-style" class="form-select">
+              <option value="pixar-3d" selected>3D Pixar / Disney Feature Animation (Soft & Expressive)</option>
+              <option value="cel-shaded">Stylized 2.5D Cel-Shaded Anime (Crisp Vector Outline)</option>
+              <option value="claymation">Stop-Motion Claymation & Vinyl Toy (Tactile Clay)</option>
+              <option value="photoreal-fur">Photoreal CGI Furry Creature (Lifelike Fur & Depth)</option>
+              <option value="chibi-kawaii">3D Chibi & Kawaii Figurine (Cute Proportions, Pastel)</option>
+            </select>
+          </div>
+
+          <!-- Environment Setting -->
+          <div class="form-group">
+            <label for="environment-select"><i class="fa-solid fa-tree"></i> Environment & World Setting</label>
+            <select id="environment-select" class="form-select">
+              <option value="stylized-park" selected>Vibrant Stylized Park & Wildflower Meadow</option>
+              <option value="cozy-workshop">Cozy Whimsical Artist Workshop & Shelves</option>
+              <option value="cyber-street">Futuristic Cyberpunk Neon City Street</option>
+              <option value="studio-stage">Minimalist Clean Studio Stage (Showcase Lighting)</option>
+              <option value="enchanted-forest">Magical Enchanted Forest with Glowing Spores</option>
+            </select>
+          </div>
+
+          <!-- Video Duration & Aspect Ratio -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="video-duration">Total Duration</label>
+              <select id="video-duration" class="form-select">
+                <option value="30" selected>30 Seconds (Continuous Story)</option>
+                <option value="15">15 Seconds (Standard Animation)</option>
+                <option value="10">10 Seconds (Quick Teaser)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="aspect-ratio">Aspect Ratio</label>
+              <select id="aspect-ratio" class="form-select">
+                <option value="16:9" selected>16:9 (Landscape YouTube / Film)</option>
+                <option value="9:16">9:16 (Vertical TikTok / Reel)</option>
+                <option value="1:1">1:1 (Square Feed Post)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Strict Identity Safeguard Toggle -->
+          <div class="toggle-card">
+            <div class="toggle-text">
+              <label for="identity-lock-toggle" class="toggle-title">Strict Mascot Identity Lock</label>
+              <p class="toggle-desc">Ensures facial features, eyes, and character shape match @Image 1 across all 30s.</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="identity-lock-toggle" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COLUMN 2: Storyboard Animation Timeline -->
+      <section class="panel-card storyboard-panel">
+        <div class="panel-header">
+          <div class="header-title-group">
+            <h2><i class="fa-solid fa-clapperboard"></i> 2. Animation Storyboard</h2>
+            <span class="timeline-indicator" id="timeline-indicator">3 Scene Beats (0:00 - 0:30)</span>
+          </div>
+          <button type="button" class="btn-sm btn-outline" id="btn-add-beat">
+            <i class="fa-solid fa-plus"></i> Add Beat
+          </button>
+        </div>
+        <div class="panel-body">
+          <p class="storyboard-tip">
+            <i class="fa-solid fa-circle-info"></i> Each beat guides the mascot's actions, expressions, and camera motion across that time slice.
+          </p>
+          <div class="beats-list" id="beats-container"></div>
+        </div>
+      </section>
+
+      <!-- COLUMN 3: Output Terminal -->
+      <section class="panel-card output-panel">
+        <div class="panel-header">
+          <h2><i class="fa-solid fa-terminal"></i> 3. Generated Prompts</h2>
+          <div class="output-tabs">
+            <button type="button" class="tab-btn active" data-tab="video-prompt">
+              <i class="fa-solid fa-video"></i> Seedance 2.5 Video
+            </button>
+            <button type="button" class="tab-btn" data-tab="canvas-prompt">
+              <i class="fa-solid fa-paintbrush"></i> Canvas Still Frame
+            </button>
+          </div>
+        </div>
+        <div class="panel-body">
+          
+          <!-- Video Prompt View -->
+          <div class="prompt-view active" id="view-video-prompt">
+            <div class="prompt-meta-bar">
+              <span class="prompt-meta-tag"><i class="fa-solid fa-clock"></i> <span id="meta-duration">30s</span> Continuous</span>
+              <span class="prompt-meta-tag"><i class="fa-solid fa-crop-simple"></i> <span id="meta-ratio">16:9</span></span>
+              <span class="prompt-meta-tag"><i class="fa-solid fa-shield-halved"></i> Identity Lock Active</span>
+            </div>
+            
+            <div class="code-container">
+              <textarea id="video-prompt-text" class="prompt-textarea" readonly rows="16"></textarea>
+            </div>
+
+            <button type="button" class="btn-copy" id="btn-copy-video">
+              <i class="fa-solid fa-copy"></i> Copy Seedance 2.5 Video Prompt
+            </button>
+          </div>
+
+          <!-- Canvas Still View -->
+          <div class="prompt-view hidden" id="view-canvas-prompt">
+            <div class="prompt-meta-bar">
+              <span class="prompt-meta-tag"><i class="fa-solid fa-image"></i> Seedream 5.0 Canvas</span>
+              <span class="prompt-meta-tag"><i class="fa-solid fa-anchor"></i> Master 3D Anchor Frame</span>
+            </div>
+            
+            <div class="code-container">
+              <textarea id="canvas-prompt-text" class="prompt-textarea" readonly rows="16"></textarea>
+            </div>
+
+            <button type="button" class="btn-copy" id="btn-copy-canvas">
+              <i class="fa-solid fa-copy"></i> Copy Canvas Master Prompt
+            </button>
+          </div>
+
+          <!-- Workflow Guide -->
+          <div class="guide-box">
+            <h4><i class="fa-solid fa-graduation-cap"></i> 2D Mascot to 3D Video Workflow:</h4>
+            <ol>
+              <li>Export your vector mascot from your design tool (Illustrator, CorelDRAW, Figma, etc.) as a clean transparent PNG.</li>
+              <li>Upload it into <strong>Dreamina</strong> as reference <strong>@Image 1</strong>.</li>
+              <li>Paste the generated Storyboard Prompt into <strong>Seedance 2.5</strong> to create a continuous 30-second animated video.</li>
+            </ol>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="app-footer">
+      <p>Dreamina 3D Character & Mascot Animation Prompt Craft &bull; 2D Vector / Illustration to AI Video Bridge &bull; Copyright &copy; 2026 <a href="https://youtube.com/coreldrawtips" target="_blank" style="color: var(--text-secondary); text-decoration: none;">Alexis Galvez (CorelDRAW Tips)</a>. All rights reserved.</p>
+      <div style="margin-top: 0.75rem; display: flex; justify-content: center;">
+        <a href="https://buymeacoffee.com/alexisgalvez" target="_blank" class="badge coffee-badge" id="coffee-link"><i class="fa-solid fa-mug-hot"></i> Support my work (Buy me a coffee)</a>
+      </div>
+    </footer>
+  </div>
+
+  <div class="toast hidden" id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-message">Prompt copied to clipboard!</span>
+  </div>
+
+  <!-- User Manual Modal -->
+  <div class="modal-overlay hidden" id="manual-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-book-open"></i> User Manual: Mascot Prompt Craft</h3>
+        <button type="button" class="btn-close-modal" id="btn-close-manual">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="manual-section">
+          <h4><span class="manual-step">1</span> Prepare & Upload Mascot</h4>
+          <p>Export your vector mascot artwork from your design software (Illustrator, CorelDRAW, Figma, etc.) as a transparent PNG or SVG. Upload it in the <strong>@Image 1</strong> box. If you upload an SVG, the tool will automatically extract and display your brand color palette!</p>
+        </div>
+        <div class="manual-section">
+          <h4><span class="manual-step">2</span> Select Style & Environment</h4>
+          <p>Choose a 3D rendering style (such as Pixar 3D, Cel-Shaded Anime, or Claymation) and select an environment setting. Volumetric and aesthetic tokens will automatically be woven into your generated prompts.</p>
+        </div>
+        <div class="manual-section">
+          <h4><span class="manual-step">3</span> Craft the Storyboard Timeline</h4>
+          <p>Use the timeline builder to structure the mascot's narrative beats. For each beat, select quick preset parameters or pick <strong>"Other / Custom Text..."</strong> to type your own character actions, expressions, camera movements, or fx.</p>
+        </div>
+        <div class="manual-section">
+          <h4><span class="manual-step">4</span> Compile & Copy Prompts</h4>
+          <p>Switch between the tabs to copy either the **Seedance 2.5 Video Prompt** or the **Seedream 5.0 Canvas Prompt**. Click the copy button to copy it instantly.</p>
+        </div>
+        <div class="manual-section">
+          <h4><span class="manual-step">5</span> Generate in Dreamina</h4>
+          <p>Open <a href="https://dreamina.capcut.com" target="_blank">dreamina.capcut.com</a>, upload your mascot image as <strong>@Image 1</strong> (set reference weight slider in Dreamina to match your lock weight), paste the copied prompt, and generate!</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-copy" id="btn-close-manual-ok">Got it!</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

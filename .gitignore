@@ -1,0 +1,9 @@
+# OS metadata files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temp/logs
+*.log
+.system_generated/
+.gemini/
