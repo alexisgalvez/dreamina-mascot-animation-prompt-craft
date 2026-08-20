@@ -7,3 +7,7 @@ desktop.ini
 *.log
 .system_generated/
 .gemini/
+
+# Media formats
+*.mp4
+*.webm

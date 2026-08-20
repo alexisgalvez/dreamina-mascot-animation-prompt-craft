@@ -222,6 +222,205 @@ document.addEventListener('DOMContentLoaded', () => {
     { value: 'Soft pastel background lighting with subtle glowing confetti', label: 'Pastel Confetti & Soft BG' }
   ];
 
+  // Animation Previews SVG templates
+  const PREVIEW_TEMPLATES = {
+    // Actions (Stick Figures)
+    walk: `
+      <svg viewBox="0 0 100 100">
+        <g class="anim-walk-body">
+          <circle class="part-head" cx="50" cy="30" r="9" />
+          <line x1="50" y1="39" x2="50" y2="60" />
+          <line class="anim-walk-left-arm" x1="50" y1="43" x2="35" y2="53" />
+          <line class="anim-walk-right-arm" x1="50" y1="43" x2="65" y2="53" />
+        </g>
+        <line class="anim-walk-left-leg" x1="50" y1="60" x2="40" y2="82" />
+        <line class="anim-walk-right-leg" x1="50" y1="60" x2="60" y2="82" />
+        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
+      </svg>
+    `,
+    jump: `
+      <svg viewBox="0 0 100 100">
+        <g class="anim-jump-group">
+          <circle class="part-head" cx="50" cy="30" r="9" />
+          <line x1="50" y1="39" x2="50" y2="60" />
+          <line class="anim-jump-left-arm" x1="50" y1="43" x2="32" y2="53" />
+          <line class="anim-jump-right-arm" x1="50" y1="43" x2="68" y2="53" />
+          <line x1="50" y1="60" x2="40" y2="80" />
+          <line x1="50" y1="60" x2="60" y2="80" />
+        </g>
+        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
+      </svg>
+    `,
+    dance: `
+      <svg viewBox="0 0 100 100">
+        <g class="anim-dance-body">
+          <circle class="part-head" cx="50" cy="30" r="9" />
+          <line x1="50" y1="39" x2="50" y2="60" />
+          <line class="anim-dance-left-arm" x1="50" y1="43" x2="30" y2="40" />
+          <line class="anim-dance-right-arm" x1="50" y1="43" x2="70" y2="40" />
+          <line x1="50" y1="60" x2="40" y2="82" />
+          <line x1="50" y1="60" x2="60" y2="82" />
+        </g>
+        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
+      </svg>
+    `,
+    wave: `
+      <svg viewBox="0 0 100 100">
+        <circle class="part-head" cx="50" cy="30" r="9" />
+        <line x1="50" y1="39" x2="50" y2="60" />
+        <line x1="50" y1="43" x2="30" y2="53" />
+        <line class="anim-wave-arm" x1="50" y1="43" x2="68" y2="53" />
+        <line x1="50" y1="60" x2="42" y2="82" />
+        <line x1="50" y1="60" x2="58" y2="82" />
+        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
+      </svg>
+    `,
+    stretch: `
+      <svg viewBox="0 0 100 100">
+        <g class="anim-stretch-head">
+          <circle class="part-head" cx="50" cy="30" r="9" />
+        </g>
+        <line x1="50" y1="39" x2="50" y2="60" />
+        <line class="anim-stretch-left-arm" x1="50" y1="43" x2="32" y2="53" />
+        <line class="anim-stretch-right-arm" x1="50" y1="43" x2="68" y2="53" />
+        <line x1="50" y1="60" x2="42" y2="82" />
+        <line x1="50" y1="60" x2="58" y2="82" />
+        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
+      </svg>
+    `,
+    
+    // Expressions (Smiley Face)
+    smile: `
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="30" style="stroke-width: 3;" />
+        <circle cx="40" cy="42" r="3.5" style="fill: var(--color-cyan);" />
+        <circle cx="60" cy="42" r="3.5" style="fill: var(--color-cyan);" />
+        <path class="anim-face-smile" d="M 38 60 Q 50 72 62 60" style="stroke-width: 4;" />
+      </svg>
+    `,
+    wink: `
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="30" style="stroke-width: 3;" />
+        <circle cx="38" cy="42" r="3.5" style="fill: var(--color-cyan);" />
+        <line class="anim-face-wink" x1="56" y1="42" x2="66" y2="42" style="stroke-width: 4;" />
+        <path d="M 38 60 Q 50 72 62 60" style="stroke-width: 4;" />
+      </svg>
+    `,
+    surprise: `
+      <svg viewBox="0 0 100 100">
+        <circle class="anim-face-surprise" cx="50" cy="50" r="30" style="stroke-width: 3;" />
+        <circle cx="40" cy="40" r="4.5" style="fill: var(--color-cyan);" />
+        <circle cx="60" cy="40" r="4.5" style="fill: var(--color-cyan);" />
+        <circle cx="50" cy="62" r="6" style="stroke-width: 4;" />
+      </svg>
+    `,
+
+    // Camera paths
+    dolly: `
+      <svg viewBox="0 0 100 100">
+        <rect x="25" y="25" width="50" height="50" style="stroke: rgba(255,255,255,0.15); stroke-width: 2; stroke-dasharray: 4;" />
+        <rect class="anim-cam-dolly" x="35" y="35" width="30" height="30" style="stroke-width: 3;" />
+        <line x1="15" y1="15" x2="35" y2="35" style="stroke: rgba(6, 182, 212, 0.3); stroke-width: 2;" />
+        <line x1="85" y1="15" x2="65" y2="35" style="stroke: rgba(6, 182, 212, 0.3); stroke-width: 2;" />
+        <line x1="15" y1="85" x2="35" y2="65" style="stroke: rgba(6, 182, 212, 0.3); stroke-width: 2;" />
+        <line x1="85" y1="85" x2="65" y2="65" style="stroke: rgba(6, 182, 212, 0.3); stroke-width: 2;" />
+      </svg>
+    `,
+    pan: `
+      <svg viewBox="0 0 100 100">
+        <g class="anim-cam-pan">
+          <rect x="35" y="30" width="30" height="40" rx="3" style="stroke-width: 3;" />
+          <circle cx="50" cy="50" r="6" />
+        </g>
+        <line x1="20" y1="50" x2="30" y2="50" style="stroke: rgba(255,255,255,0.3); stroke-width: 2;" />
+        <path d="M 20 45 L 12 50 L 20 55 Z" style="fill: rgba(255,255,255,0.3); stroke: none;" />
+        <line x1="80" y1="50" x2="70" y2="50" style="stroke: rgba(255,255,255,0.3); stroke-width: 2;" />
+        <path d="M 80 45 L 88 50 L 80 55 Z" style="fill: rgba(255,255,255,0.3); stroke: none;" />
+      </svg>
+    `,
+    orbit: `
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="12" style="stroke: rgba(255,255,255,0.2); fill: rgba(255,255,255,0.05);" />
+        <circle class="anim-cam-orbit" cx="50" cy="20" r="6" style="fill: var(--color-cyan); stroke-width: 2;" />
+        <ellipse cx="50" cy="50" rx="35" ry="12" style="stroke-width: 2; stroke-dasharray: 4; transform: rotate(-15deg);" />
+      </svg>
+    `,
+
+    // FX
+    particles: `
+      <svg viewBox="0 0 100 100">
+        <g class="anim-fx-particles">
+          <circle cx="35" cy="50" r="3.5" style="fill: var(--color-cyan);" />
+          <circle cx="50" cy="65" r="4.5" style="fill: var(--color-cyan);" />
+          <circle cx="65" cy="45" r="2.5" style="fill: var(--color-cyan);" />
+        </g>
+        <path d="M 30 75 Q 50 65 70 75" style="stroke: rgba(255,255,255,0.2); stroke-width: 3;" />
+      </svg>
+    `,
+    ripple: `
+      <svg viewBox="0 0 100 100">
+        <ellipse class="anim-fx-ripple" cx="50" cy="60" rx="35" ry="15" style="stroke-width: 3;" />
+        <path d="M 50 35 L 50 55" style="stroke-width: 3;" />
+        <path d="M 45 45 L 50 55 L 55 45" style="stroke-width: 3;" />
+      </svg>
+    `,
+
+    // Fallbacks
+    custom: `
+      <svg viewBox="0 0 100 100">
+        <rect x="25" y="25" width="50" height="50" rx="5" style="stroke-width: 3; stroke-dasharray: 4; stroke: var(--text-muted);" />
+        <path d="M 42 62 L 62 42" style="stroke: var(--text-muted); stroke-width: 4;" />
+        <path d="M 46 42 L 62 42 L 62 58" style="stroke: var(--text-muted); stroke-width: 4;" />
+      </svg>
+    `,
+    static: `
+      <svg viewBox="0 0 100 100">
+        <circle class="part-head" cx="50" cy="30" r="9" />
+        <line x1="50" y1="39" x2="50" y2="60" />
+        <line x1="50" y1="43" x2="35" y2="53" />
+        <line x1="50" y1="43" x2="65" y2="53" />
+        <line x1="50" y1="60" x2="42" y2="82" />
+        <line x1="50" y1="60" x2="58" y2="82" />
+        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
+      </svg>
+    `
+  };
+
+  function getPreviewSvg(fieldName, value) {
+    if (!value || value === 'custom') return PREVIEW_TEMPLATES.custom;
+    
+    const val = value.toLowerCase();
+    
+    if (fieldName === 'action') {
+      if (val.includes('walk') || val.includes('run')) return PREVIEW_TEMPLATES.walk;
+      if (val.includes('jump') || val.includes('leap') || val.includes('flip')) return PREVIEW_TEMPLATES.jump;
+      if (val.includes('dance') || val.includes('bop') || val.includes('wiggle')) return PREVIEW_TEMPLATES.dance;
+      if (val.includes('wave') || val.includes('celebration')) return PREVIEW_TEMPLATES.wave;
+      if (val.includes('stretch') || val.includes('wake') || val.includes('awaken') || val.includes('curious')) return PREVIEW_TEMPLATES.stretch;
+      return PREVIEW_TEMPLATES.static;
+    }
+    
+    if (fieldName === 'expression') {
+      if (val.includes('wink')) return PREVIEW_TEMPLATES.wink;
+      if (val.includes('surprise') || val.includes('gasp') || val.includes('wide')) return PREVIEW_TEMPLATES.surprise;
+      return PREVIEW_TEMPLATES.smile;
+    }
+    
+    if (fieldName === 'camera') {
+      if (val.includes('dolly') || val.includes('push') || val.includes('zoom') || val.includes('close')) return PREVIEW_TEMPLATES.dolly;
+      if (val.includes('pan') || val.includes('track') || val.includes('glide') || val.includes('float')) return PREVIEW_TEMPLATES.pan;
+      if (val.includes('orbit') || val.includes('circle') || val.includes('around')) return PREVIEW_TEMPLATES.orbit;
+      return PREVIEW_TEMPLATES.dolly;
+    }
+    
+    if (fieldName === 'fx') {
+      if (val.includes('dust') || val.includes('ripple') || val.includes('splash') || val.includes('landing') || val.includes('shockwave')) return PREVIEW_TEMPLATES.ripple;
+      return PREVIEW_TEMPLATES.particles;
+    }
+    
+    return PREVIEW_TEMPLATES.static;
+  }
+
   // DOM Elements
   const durationSelect = document.getElementById('video-duration');
   const aspectRatioSelect = document.getElementById('aspect-ratio');
@@ -428,14 +627,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const customSelected = isCustom ? 'selected' : '';
       optionsHtml += `<option value="custom" ${customSelected}>Other / Custom Text...</option>`;
 
+      const previewSvg = getPreviewSvg(fieldName, currentValue);
+
       return `
         <div class="form-group ${fieldName === 'action' || fieldName === 'fx' ? 'full-span' : ''}">
           <label class="field-desc">${label}</label>
-          <div class="field-input-group">
-            <select class="form-select beat-preset-select" data-field="${fieldName}">
-              ${optionsHtml}
-            </select>
-            <input type="text" class="form-input beat-custom-input ${isCustom ? '' : 'hidden'}" value="${escapeHtml(currentValue)}" data-field="${fieldName}" placeholder="Enter custom ${label.toLowerCase()}...">
+          <div class="field-row-layout">
+            <div class="field-controls-wrap">
+              <select class="form-select beat-preset-select" data-field="${fieldName}">
+                ${optionsHtml}
+              </select>
+              <input type="text" class="form-input beat-custom-input ${isCustom ? '' : 'hidden'}" value="${escapeHtml(currentValue)}" data-field="${fieldName}" placeholder="Enter custom ${label.toLowerCase()}...">
+            </div>
+            <div class="preview-canvas" data-field="${fieldName}" title="Visual Preview">
+              ${previewSvg}
+            </div>
           </div>
         </div>
       `;
@@ -490,6 +696,13 @@ document.addEventListener('DOMContentLoaded', () => {
             beat[field] = e.target.value;
             input.value = e.target.value;
           }
+
+          const rowLayout = e.target.closest('.field-row-layout');
+          const canvas = rowLayout.querySelector('.preview-canvas');
+          if (canvas) {
+            canvas.innerHTML = getPreviewSvg(field, beat[field]);
+          }
+
           compilePrompts();
         });
       });
@@ -499,6 +712,13 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('input', (e) => {
           const field = e.target.dataset.field;
           beat[field] = e.target.value;
+
+          const rowLayout = e.target.closest('.field-row-layout');
+          const canvas = rowLayout.querySelector('.preview-canvas');
+          if (canvas) {
+            canvas.innerHTML = getPreviewSvg(field, beat[field]);
+          }
+
           compilePrompts();
         });
       });
