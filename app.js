@@ -222,205 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
     { value: 'Soft pastel background lighting with subtle glowing confetti', label: 'Pastel Confetti & Soft BG' }
   ];
 
-  // Animation Previews SVG templates
-  const PREVIEW_TEMPLATES = {
-    // Actions (Stick Figures)
-    walk: `
-      <svg viewBox="0 0 100 100">
-        <g class="anim-walk-body">
-          <circle class="part-head" cx="50" cy="30" r="9" />
-          <line x1="50" y1="39" x2="50" y2="60" />
-          <line class="anim-walk-left-arm" x1="50" y1="43" x2="35" y2="53" />
-          <line class="anim-walk-right-arm" x1="50" y1="43" x2="65" y2="53" />
-        </g>
-        <line class="anim-walk-left-leg" x1="50" y1="60" x2="40" y2="82" />
-        <line class="anim-walk-right-leg" x1="50" y1="60" x2="60" y2="82" />
-        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
-      </svg>
-    `,
-    jump: `
-      <svg viewBox="0 0 100 100">
-        <g class="anim-jump-group">
-          <circle class="part-head" cx="50" cy="30" r="9" />
-          <line x1="50" y1="39" x2="50" y2="60" />
-          <line class="anim-jump-left-arm" x1="50" y1="43" x2="32" y2="53" />
-          <line class="anim-jump-right-arm" x1="50" y1="43" x2="68" y2="53" />
-          <line x1="50" y1="60" x2="40" y2="80" />
-          <line x1="50" y1="60" x2="60" y2="80" />
-        </g>
-        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
-      </svg>
-    `,
-    dance: `
-      <svg viewBox="0 0 100 100">
-        <g class="anim-dance-body">
-          <circle class="part-head" cx="50" cy="30" r="9" />
-          <line x1="50" y1="39" x2="50" y2="60" />
-          <line class="anim-dance-left-arm" x1="50" y1="43" x2="30" y2="40" />
-          <line class="anim-dance-right-arm" x1="50" y1="43" x2="70" y2="40" />
-          <line x1="50" y1="60" x2="40" y2="82" />
-          <line x1="50" y1="60" x2="60" y2="82" />
-        </g>
-        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
-      </svg>
-    `,
-    wave: `
-      <svg viewBox="0 0 100 100">
-        <circle class="part-head" cx="50" cy="30" r="9" />
-        <line x1="50" y1="39" x2="50" y2="60" />
-        <line x1="50" y1="43" x2="30" y2="53" />
-        <line class="anim-wave-arm" x1="50" y1="43" x2="68" y2="53" />
-        <line x1="50" y1="60" x2="42" y2="82" />
-        <line x1="50" y1="60" x2="58" y2="82" />
-        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
-      </svg>
-    `,
-    stretch: `
-      <svg viewBox="0 0 100 100">
-        <g class="anim-stretch-head">
-          <circle class="part-head" cx="50" cy="30" r="9" />
-        </g>
-        <line x1="50" y1="39" x2="50" y2="60" />
-        <line class="anim-stretch-left-arm" x1="50" y1="43" x2="32" y2="53" />
-        <line class="anim-stretch-right-arm" x1="50" y1="43" x2="68" y2="53" />
-        <line x1="50" y1="60" x2="42" y2="82" />
-        <line x1="50" y1="60" x2="58" y2="82" />
-        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
-      </svg>
-    `,
-    
-    // Expressions (Smiley Face)
-    smile: `
-      <svg viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="30" style="stroke-width: 3;" />
-        <circle cx="40" cy="42" r="3.5" style="fill: var(--color-cyan);" />
-        <circle cx="60" cy="42" r="3.5" style="fill: var(--color-cyan);" />
-        <path class="anim-face-smile" d="M 38 60 Q 50 72 62 60" style="stroke-width: 4;" />
-      </svg>
-    `,
-    wink: `
-      <svg viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="30" style="stroke-width: 3;" />
-        <circle cx="38" cy="42" r="3.5" style="fill: var(--color-cyan);" />
-        <line class="anim-face-wink" x1="56" y1="42" x2="66" y2="42" style="stroke-width: 4;" />
-        <path d="M 38 60 Q 50 72 62 60" style="stroke-width: 4;" />
-      </svg>
-    `,
-    surprise: `
-      <svg viewBox="0 0 100 100">
-        <circle class="anim-face-surprise" cx="50" cy="50" r="30" style="stroke-width: 3;" />
-        <circle cx="40" cy="40" r="4.5" style="fill: var(--color-cyan);" />
-        <circle cx="60" cy="40" r="4.5" style="fill: var(--color-cyan);" />
-        <circle cx="50" cy="62" r="6" style="stroke-width: 4;" />
-      </svg>
-    `,
-
-    // Camera paths
-    dolly: `
-      <svg viewBox="0 0 100 100">
-        <rect x="25" y="25" width="50" height="50" style="stroke: rgba(255,255,255,0.15); stroke-width: 2; stroke-dasharray: 4;" />
-        <rect class="anim-cam-dolly" x="35" y="35" width="30" height="30" style="stroke-width: 3;" />
-        <line x1="15" y1="15" x2="35" y2="35" style="stroke: rgba(6, 182, 212, 0.3); stroke-width: 2;" />
-        <line x1="85" y1="15" x2="65" y2="35" style="stroke: rgba(6, 182, 212, 0.3); stroke-width: 2;" />
-        <line x1="15" y1="85" x2="35" y2="65" style="stroke: rgba(6, 182, 212, 0.3); stroke-width: 2;" />
-        <line x1="85" y1="85" x2="65" y2="65" style="stroke: rgba(6, 182, 212, 0.3); stroke-width: 2;" />
-      </svg>
-    `,
-    pan: `
-      <svg viewBox="0 0 100 100">
-        <g class="anim-cam-pan">
-          <rect x="35" y="30" width="30" height="40" rx="3" style="stroke-width: 3;" />
-          <circle cx="50" cy="50" r="6" />
-        </g>
-        <line x1="20" y1="50" x2="30" y2="50" style="stroke: rgba(255,255,255,0.3); stroke-width: 2;" />
-        <path d="M 20 45 L 12 50 L 20 55 Z" style="fill: rgba(255,255,255,0.3); stroke: none;" />
-        <line x1="80" y1="50" x2="70" y2="50" style="stroke: rgba(255,255,255,0.3); stroke-width: 2;" />
-        <path d="M 80 45 L 88 50 L 80 55 Z" style="fill: rgba(255,255,255,0.3); stroke: none;" />
-      </svg>
-    `,
-    orbit: `
-      <svg viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="12" style="stroke: rgba(255,255,255,0.2); fill: rgba(255,255,255,0.05);" />
-        <circle class="anim-cam-orbit" cx="50" cy="20" r="6" style="fill: var(--color-cyan); stroke-width: 2;" />
-        <ellipse cx="50" cy="50" rx="35" ry="12" style="stroke-width: 2; stroke-dasharray: 4; transform: rotate(-15deg);" />
-      </svg>
-    `,
-
-    // FX
-    particles: `
-      <svg viewBox="0 0 100 100">
-        <g class="anim-fx-particles">
-          <circle cx="35" cy="50" r="3.5" style="fill: var(--color-cyan);" />
-          <circle cx="50" cy="65" r="4.5" style="fill: var(--color-cyan);" />
-          <circle cx="65" cy="45" r="2.5" style="fill: var(--color-cyan);" />
-        </g>
-        <path d="M 30 75 Q 50 65 70 75" style="stroke: rgba(255,255,255,0.2); stroke-width: 3;" />
-      </svg>
-    `,
-    ripple: `
-      <svg viewBox="0 0 100 100">
-        <ellipse class="anim-fx-ripple" cx="50" cy="60" rx="35" ry="15" style="stroke-width: 3;" />
-        <path d="M 50 35 L 50 55" style="stroke-width: 3;" />
-        <path d="M 45 45 L 50 55 L 55 45" style="stroke-width: 3;" />
-      </svg>
-    `,
-
-    // Fallbacks
-    custom: `
-      <svg viewBox="0 0 100 100">
-        <rect x="25" y="25" width="50" height="50" rx="5" style="stroke-width: 3; stroke-dasharray: 4; stroke: var(--text-muted);" />
-        <path d="M 42 62 L 62 42" style="stroke: var(--text-muted); stroke-width: 4;" />
-        <path d="M 46 42 L 62 42 L 62 58" style="stroke: var(--text-muted); stroke-width: 4;" />
-      </svg>
-    `,
-    static: `
-      <svg viewBox="0 0 100 100">
-        <circle class="part-head" cx="50" cy="30" r="9" />
-        <line x1="50" y1="39" x2="50" y2="60" />
-        <line x1="50" y1="43" x2="35" y2="53" />
-        <line x1="50" y1="43" x2="65" y2="53" />
-        <line x1="50" y1="60" x2="42" y2="82" />
-        <line x1="50" y1="60" x2="58" y2="82" />
-        <line x1="15" y1="82" x2="85" y2="82" style="stroke: rgba(255,255,255,0.15); stroke-width: 2;" />
-      </svg>
-    `
-  };
-
-  function getPreviewSvg(fieldName, value) {
-    if (!value || value === 'custom') return PREVIEW_TEMPLATES.custom;
-    
-    const val = value.toLowerCase();
-    
-    if (fieldName === 'action') {
-      if (val.includes('walk') || val.includes('run')) return PREVIEW_TEMPLATES.walk;
-      if (val.includes('jump') || val.includes('leap') || val.includes('flip')) return PREVIEW_TEMPLATES.jump;
-      if (val.includes('dance') || val.includes('bop') || val.includes('wiggle')) return PREVIEW_TEMPLATES.dance;
-      if (val.includes('wave') || val.includes('celebration')) return PREVIEW_TEMPLATES.wave;
-      if (val.includes('stretch') || val.includes('wake') || val.includes('awaken') || val.includes('curious')) return PREVIEW_TEMPLATES.stretch;
-      return PREVIEW_TEMPLATES.static;
-    }
-    
-    if (fieldName === 'expression') {
-      if (val.includes('wink')) return PREVIEW_TEMPLATES.wink;
-      if (val.includes('surprise') || val.includes('gasp') || val.includes('wide')) return PREVIEW_TEMPLATES.surprise;
-      return PREVIEW_TEMPLATES.smile;
-    }
-    
-    if (fieldName === 'camera') {
-      if (val.includes('dolly') || val.includes('push') || val.includes('zoom') || val.includes('close')) return PREVIEW_TEMPLATES.dolly;
-      if (val.includes('pan') || val.includes('track') || val.includes('glide') || val.includes('float')) return PREVIEW_TEMPLATES.pan;
-      if (val.includes('orbit') || val.includes('circle') || val.includes('around')) return PREVIEW_TEMPLATES.orbit;
-      return PREVIEW_TEMPLATES.dolly;
-    }
-    
-    if (fieldName === 'fx') {
-      if (val.includes('dust') || val.includes('ripple') || val.includes('splash') || val.includes('landing') || val.includes('shockwave')) return PREVIEW_TEMPLATES.ripple;
-      return PREVIEW_TEMPLATES.particles;
-    }
-    
-    return PREVIEW_TEMPLATES.static;
-  }
-
   // DOM Elements
   const durationSelect = document.getElementById('video-duration');
   const aspectRatioSelect = document.getElementById('aspect-ratio');
@@ -457,6 +258,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const toast = document.getElementById('toast');
   const toastMessage = document.getElementById('toast-message');
 
+  // DOM Elements for Saved Creations & Video Player
+  const saveNameInput = document.getElementById('save-name-input');
+  const saveVideoLinkInput = document.getElementById('save-video-link-input');
+  const btnSaveCreation = document.getElementById('btn-save-creation');
+  const savedCreationsList = document.getElementById('saved-creations-list');
+
+  const videoDropZone = document.getElementById('video-drop-zone');
+  const videoFileInput = document.getElementById('video-file-input');
+  const videoDisplayContainer = document.getElementById('video-display-container');
+  const previewVideoPlayer = document.getElementById('preview-video-player');
+  const btnRemoveVideo = document.getElementById('btn-remove-video');
+  const onlineVideoUrl = document.getElementById('online-video-url');
+  const btnLoadUrl = document.getElementById('btn-load-url');
+
   const btnOpenManual = document.getElementById('btn-open-manual');
   const manualModal = document.getElementById('manual-modal');
   const btnCloseManual = document.getElementById('btn-close-manual');
@@ -466,6 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPreset('mascot-adventure');
     setupEventListeners();
     setupImageUpload();
+    setupSavedCreations();
+    setupLocalVideoPlayer();
   }
 
   function setupEventListeners() {
@@ -627,21 +444,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const customSelected = isCustom ? 'selected' : '';
       optionsHtml += `<option value="custom" ${customSelected}>Other / Custom Text...</option>`;
 
-      const previewSvg = getPreviewSvg(fieldName, currentValue);
-
       return `
         <div class="form-group ${fieldName === 'action' || fieldName === 'fx' ? 'full-span' : ''}">
           <label class="field-desc">${label}</label>
-          <div class="field-row-layout">
-            <div class="field-controls-wrap">
-              <select class="form-select beat-preset-select" data-field="${fieldName}">
-                ${optionsHtml}
-              </select>
-              <input type="text" class="form-input beat-custom-input ${isCustom ? '' : 'hidden'}" value="${escapeHtml(currentValue)}" data-field="${fieldName}" placeholder="Enter custom ${label.toLowerCase()}...">
-            </div>
-            <div class="preview-canvas" data-field="${fieldName}" title="Visual Preview">
-              ${previewSvg}
-            </div>
+          <div class="field-input-group">
+            <select class="form-select beat-preset-select" data-field="${fieldName}">
+              ${optionsHtml}
+            </select>
+            <input type="text" class="form-input beat-custom-input ${isCustom ? '' : 'hidden'}" value="${escapeHtml(currentValue)}" data-field="${fieldName}" placeholder="Enter custom ${label.toLowerCase()}...">
           </div>
         </div>
       `;
@@ -696,13 +506,6 @@ document.addEventListener('DOMContentLoaded', () => {
             beat[field] = e.target.value;
             input.value = e.target.value;
           }
-
-          const rowLayout = e.target.closest('.field-row-layout');
-          const canvas = rowLayout.querySelector('.preview-canvas');
-          if (canvas) {
-            canvas.innerHTML = getPreviewSvg(field, beat[field]);
-          }
-
           compilePrompts();
         });
       });
@@ -712,13 +515,6 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener('input', (e) => {
           const field = e.target.dataset.field;
           beat[field] = e.target.value;
-
-          const rowLayout = e.target.closest('.field-row-layout');
-          const canvas = rowLayout.querySelector('.preview-canvas');
-          if (canvas) {
-            canvas.innerHTML = getPreviewSvg(field, beat[field]);
-          }
-
           compilePrompts();
         });
       });
@@ -960,6 +756,282 @@ document.addEventListener('DOMContentLoaded', () => {
     toastMessage.textContent = message;
     toast.classList.remove('hidden');
     setTimeout(() => toast.classList.add('hidden'), 2800);
+  }
+
+  // ==========================================================================
+  // Saved Creations & Video Player Logic
+  // ==========================================================================
+
+  function setupSavedCreations() {
+    btnSaveCreation.addEventListener('click', saveCurrentCreation);
+    renderSavedCreations();
+  }
+
+  function saveCurrentCreation() {
+    let name = saveNameInput.value.trim();
+    if (!name) {
+      const date = new Date();
+      name = `Creation - ${date.toLocaleDateString()} ${date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+    }
+
+    const videoLink = saveVideoLinkInput.value.trim();
+
+    const creation = {
+      id: Date.now().toString(),
+      name: name,
+      videoLink: videoLink,
+      timestamp: new Date().toISOString(),
+      state: {
+        duration: State.duration,
+        aspectRatio: State.aspectRatio,
+        characterStyle: State.characterStyle,
+        environment: State.environment,
+        identityWeight: State.identityWeight,
+        strictIdentityLock: State.strictIdentityLock,
+        hasImage: State.hasImage,
+        extractedColors: [...State.extractedColors],
+        beats: State.beats.map(b => ({
+          name: b.name,
+          durationShare: b.durationShare,
+          action: b.action,
+          expression: b.expression,
+          camera: b.camera,
+          fx: b.fx
+        }))
+      },
+      imageSrc: imagePreview1.src || ""
+    };
+
+    try {
+      const saved = JSON.parse(localStorage.getItem('dreamina_mascot_saves') || '[]');
+      saved.unshift(creation); // Add to the top
+      localStorage.setItem('dreamina_mascot_saves', JSON.stringify(saved));
+      
+      saveNameInput.value = '';
+      saveVideoLinkInput.value = '';
+      showToast('Creation saved successfully!');
+      renderSavedCreations();
+    } catch (e) {
+      console.error(e);
+      if (e.name === 'QuotaExceededError' || e.code === 22) {
+        showToast('Storage full! Mascot image is too large. Try a smaller PNG or SVG.');
+      } else {
+        showToast('Error saving creation to localStorage.');
+      }
+    }
+  }
+
+  function renderSavedCreations() {
+    savedCreationsList.innerHTML = '';
+    const saved = JSON.parse(localStorage.getItem('dreamina_mascot_saves') || '[]');
+
+    if (saved.length === 0) {
+      savedCreationsList.innerHTML = '<span class="empty-saved-text">No saved creations in this browser.</span>';
+      return;
+    }
+
+    saved.forEach(item => {
+      const date = new Date(item.timestamp);
+      const dateStr = `${date.toLocaleDateString()} ${date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+      const itemEl = document.createElement('div');
+      itemEl.className = 'saved-item';
+      
+      let metaStr = `${item.state.duration}s | ${item.state.aspectRatio} | ${item.state.characterStyle}`;
+      if (item.videoLink) {
+        metaStr += ` | 🎥 Link attached`;
+      }
+
+      itemEl.innerHTML = `
+        <div class="saved-item-info" title="Click to load configuration">
+          <span class="saved-item-name">${escapeHtml(item.name)}</span>
+          <span class="saved-item-meta">${metaStr} <span style="opacity: 0.5;">(${dateStr})</span></span>
+        </div>
+        <div class="saved-item-actions">
+          <button type="button" class="btn-item-delete" title="Delete Saved Creation"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      `;
+
+      itemEl.querySelector('.saved-item-info').addEventListener('click', () => {
+        loadSavedCreation(item);
+      });
+
+      itemEl.querySelector('.btn-item-delete').addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (confirm(`Are you sure you want to delete "${item.name}"?`)) {
+          deleteSavedCreation(item.id);
+        }
+      });
+
+      savedCreationsList.appendChild(itemEl);
+    });
+  }
+
+  function deleteSavedCreation(id) {
+    const saved = JSON.parse(localStorage.getItem('dreamina_mascot_saves') || '[]');
+    const filtered = saved.filter(item => item.id !== id);
+    localStorage.setItem('dreamina_mascot_saves', JSON.stringify(filtered));
+    showToast('Creation deleted.');
+    renderSavedCreations();
+  }
+
+  function loadSavedCreation(item) {
+    // Restore state variables
+    State.duration = item.state.duration;
+    State.aspectRatio = item.state.aspectRatio;
+    State.characterStyle = item.state.characterStyle;
+    State.environment = item.state.environment;
+    State.identityWeight = item.state.identityWeight;
+    State.strictIdentityLock = item.state.strictIdentityLock;
+    State.hasImage = item.state.hasImage;
+    State.extractedColors = [...item.state.extractedColors];
+
+    // Restore DOM control values
+    durationSelect.value = State.duration.toString();
+    aspectRatioSelect.value = State.aspectRatio;
+    characterStyleSelect.value = State.characterStyle;
+    environmentSelect.value = State.environment;
+    identityLockToggle.checked = State.strictIdentityLock;
+    weight1.value = State.identityWeight.toString();
+    weightVal1.textContent = `${State.identityWeight}%`;
+
+    // Restore Mascot Image Preview and palette
+    if (item.imageSrc && item.state.hasImage) {
+      imagePreview1.src = item.imageSrc;
+      uploadIdle1.classList.add('hidden');
+      uploadPreview1.classList.remove('hidden');
+    } else {
+      imagePreview1.src = '';
+      uploadIdle1.classList.remove('hidden');
+      uploadPreview1.classList.add('hidden');
+    }
+    renderPalette();
+
+    // Restore video link input and local video if stored
+    if (item.videoLink) {
+      saveVideoLinkInput.value = item.videoLink;
+      onlineVideoUrl.value = item.videoLink;
+      if (item.videoLink.startsWith('http://') || item.videoLink.startsWith('https://')) {
+        loadVideoUrl(item.videoLink);
+      }
+    } else {
+      saveVideoLinkInput.value = '';
+    }
+
+    // Restore beats
+    State.beats = item.state.beats.map((b, idx) => ({
+      id: Date.now() + idx,
+      name: b.name,
+      durationShare: b.durationShare,
+      startSec: 0,
+      endSec: 0,
+      action: b.action,
+      expression: b.expression,
+      camera: b.camera,
+      fx: b.fx
+    }));
+
+    recalculateBeatTimings();
+    renderBeats();
+    compilePrompts();
+    showToast(`Loaded "${item.name}"`);
+  }
+
+  // Local Video Player Logic
+  function setupLocalVideoPlayer() {
+    videoDropZone.addEventListener('click', () => {
+      videoFileInput.click();
+    });
+
+    videoFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        loadLocalVideoFile(file);
+      }
+    });
+
+    ['dragenter', 'dragover'].forEach(name => {
+      videoDropZone.addEventListener(name, (e) => {
+        e.preventDefault();
+        videoDropZone.classList.add('dragover');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(name => {
+      videoDropZone.addEventListener(name, (e) => {
+        e.preventDefault();
+        videoDropZone.classList.remove('dragover');
+      }, false);
+    });
+
+    videoDropZone.addEventListener('drop', (e) => {
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith('video/')) {
+        loadLocalVideoFile(file);
+      } else {
+        showToast('Please drop a valid .mp4 or other video file.');
+      }
+    });
+
+    btnRemoveVideo.addEventListener('click', () => {
+      previewVideoPlayer.pause();
+      previewVideoPlayer.src = '';
+      videoFileInput.value = '';
+      videoDisplayContainer.classList.add('hidden');
+      videoDropZone.classList.remove('hidden');
+    });
+
+    btnLoadUrl.addEventListener('click', () => {
+      const url = onlineVideoUrl.value.trim();
+      if (url) {
+        loadVideoUrl(url);
+      } else {
+        showToast('Please enter a video URL first.');
+      }
+    });
+  }
+
+  function loadLocalVideoFile(file) {
+    const objectUrl = URL.createObjectURL(file);
+    previewVideoPlayer.src = objectUrl;
+    videoDropZone.classList.add('hidden');
+    videoDisplayContainer.classList.remove('hidden');
+    previewVideoPlayer.load();
+    previewVideoPlayer.play().catch(err => console.log('Auto-play blocked or failed:', err));
+    showToast(`Playing local video: ${file.name}`);
+  }
+
+  function loadVideoUrl(url) {
+    let videoUrl = url;
+    if (url.includes('youtube.com/watch?v=')) {
+      const videoId = url.split('v=')[1].split('&')[0];
+      videoUrl = `https://www.youtube.com/embed/${videoId}`;
+      showToast('YouTube link detected. YouTube links open best in a new tab.');
+      window.open(url, '_blank');
+      return;
+    } else if (url.includes('youtu.be/')) {
+      const videoId = url.split('youtu.be/')[1].split('?')[0];
+      videoUrl = `https://www.youtube.com/embed/${videoId}`;
+      showToast('YouTube link detected. YouTube links open best in a new tab.');
+      window.open(url, '_blank');
+      return;
+    }
+
+    previewVideoPlayer.src = videoUrl;
+    videoDropZone.classList.add('hidden');
+    videoDisplayContainer.classList.remove('hidden');
+    previewVideoPlayer.load();
+    previewVideoPlayer.play().catch(err => {
+      console.log('Video URL load issue: ', err);
+      showToast('Video loaded. Press play to watch.');
+    });
+  }
+
+  function init() {
+    loadPreset('mascot-adventure');
+    setupEventListeners();
+    setupImageUpload();
+    setupSavedCreations();
+    setupLocalVideoPlayer();
   }
 
   init();

@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-let port = 3000;
+let port = 3001;
 
 const MIME_TYPES = {
   '.html': 'text/html',

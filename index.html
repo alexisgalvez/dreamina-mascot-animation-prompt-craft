@@ -254,6 +254,44 @@
             </ol>
           </div>
 
+          <!-- Saved Creations Panel -->
+          <div class="saved-creations-box">
+            <h4><i class="fa-solid fa-bookmark"></i> Saved Creations</h4>
+            <div class="save-form-row">
+              <input type="text" id="save-name-input" placeholder="Name this configuration..." class="form-input">
+              <input type="text" id="save-video-link-input" placeholder="Video filename or URL (optional)..." class="form-input">
+              <button type="button" class="btn-save-creation" id="btn-save-creation">
+                <i class="fa-solid fa-floppy-disk"></i> Save
+              </button>
+            </div>
+            <div id="saved-creations-list" class="saved-creations-list">
+              <span class="empty-saved-text">No saved creations in this browser.</span>
+            </div>
+          </div>
+
+          <!-- Video Preview Box -->
+          <div class="video-preview-box">
+            <h4><i class="fa-solid fa-video"></i> Animation Video Player</h4>
+            <div class="video-player-container">
+              <div class="video-drop-zone" id="video-drop-zone">
+                <i class="fa-solid fa-film video-upload-icon"></i>
+                <p class="video-upload-main-text">Drag & Drop generated .mp4 video here</p>
+                <span class="video-upload-sub-text">or click to browse from computer</span>
+                <input type="file" id="video-file-input" accept="video/mp4, video/*" class="file-input">
+              </div>
+              <div class="video-display-container hidden" id="video-display-container">
+                <video id="preview-video-player" controls preload="metadata"></video>
+                <button type="button" class="btn-remove-video" id="btn-remove-video" title="Remove video">
+                  <i class="fa-solid fa-xmark"></i> Remove Video
+                </button>
+              </div>
+            </div>
+            <div class="video-url-row">
+              <input type="text" id="online-video-url" placeholder="Or paste online video link (mp4, youtube, vimeo)..." class="form-input">
+              <button type="button" class="btn-load-url" id="btn-load-url">Load URL</button>
+            </div>
+          </div>
+
         </div>
       </section>
 
